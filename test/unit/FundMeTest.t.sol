@@ -2,9 +2,9 @@
 pragma solidity ^0.8.18;
 
 import {Test, console, console2} from "forge-std/Test.sol"; // console2 differs from console in that it does not print the contract address
-import {FundMe} from "../src/FundMe.sol";
-import {DeployFundMe} from "../script/DeployFundMe.s.sol";
-import {MockV3Aggregator} from "./mocks/MockV3Aggregator.sol";
+import {FundMe} from "../../src/FundMe.sol";
+import {DeployFundMe} from "../../script/DeployFundMe.s.sol";
+import {MockV3Aggregator} from "../mocks/MockV3Aggregator.sol";
 
 // The arrange-act-assert (AAA) methodology is one of the simplest and most universally accepted ways to write tests. As the name suggests, it comprises three parts:
 
@@ -142,6 +142,38 @@ contract FundMeTest is Test {
         assert(address(fundMe).balance == 0);
         assert(startingFundMeBalance + startingOwnerBalance == fundMe.getOwner().balance);
         assert((numberOfFunders + 1) * SEND_VALUE == fundMe.getOwner().balance - startingOwnerBalance);
+    }
+
+    function testWithdrawFromMultipleFundersCheaper() public funded {
+    uint160 numberOfFunders = 10;
+    uint160 startingFunderIndex = 1;
+    for (uint160 i = startingFunderIndex; i < numberOfFunders + startingFunderIndex; i++) {
+        // we get hoax from stdcheats
+        // prank + deal
+        hoax(address(i), SEND_VALUE);
+        fundMe.fund{value: SEND_VALUE}();
+    }
+
+    uint256 startingFundMeBalance = address(fundMe).balance;
+    uint256 startingOwnerBalance = fundMe.getOwner().balance;
+
+    vm.startPrank(fundMe.getOwner());
+    fundMe.cheaperWithdraw();
+    vm.stopPrank();
+
+    assert(address(fundMe).balance == 0);
+    assert(startingFundMeBalance + startingOwnerBalance == fundMe.getOwner().balance);
+    assert((numberOfFunders + 1) * SEND_VALUE == fundMe.getOwner().balance - startingOwnerBalance);
+
+}
+
+    function testPrintStorageData() public view {
+        for (uint256 i = 0; i < 3; i++) {
+            bytes32 value = vm.load(address(fundMe), bytes32(i));
+            console.log("Value at location", i, ":");
+            console.logBytes32(value);
+        }
+        console.log("PriceFeed address:", address(fundMe.getPriceFeed()));
     }
 
     // function testDemo() public view {
