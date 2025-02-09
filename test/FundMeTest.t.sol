@@ -2,9 +2,9 @@
 pragma solidity ^0.8.18;
 
 import {Test, console, console2} from "forge-std/Test.sol"; // console2 differs from console in that it does not print the contract address
-import {FundMe} from "../../src/FundMe.sol";
-import {DeployFundMe} from "../../script/DeployFundMe.s.sol";
-import {MockV3Aggregator} from "../mocks/MockV3Aggregator.sol";
+import {FundMe} from "../src/FundMe.sol";
+import {DeployFundMe} from "../script/DeployFundMe.s.sol";
+import {MockV3Aggregator} from "./mocks/MockV3Aggregator.sol";
 
 // The arrange-act-assert (AAA) methodology is one of the simplest and most universally accepted ways to write tests. As the name suggests, it comprises three parts:
 
