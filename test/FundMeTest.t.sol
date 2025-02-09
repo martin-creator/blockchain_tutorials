@@ -5,6 +5,8 @@ import {Test, console, console2} from "forge-std/Test.sol"; // console2 differs 
 import {FundMe} from "../src/FundMe.sol";
 import {DeployFundMe} from "../script/DeployFundMe.s.sol";
 import {MockV3Aggregator} from "./mocks/MockV3Aggregator.sol";
+import { ZkSyncChainChecker } from "lib/foundry-devops/src/ZkSyncChainChecker.sol";
+import { FoundryZkSyncChecker } from "lib/foundry-devops/src/FoundryZkSyncChecker.sol";
 
 // The arrange-act-assert (AAA) methodology is one of the simplest and most universally accepted ways to write tests. As the name suggests, it comprises three parts:
 
