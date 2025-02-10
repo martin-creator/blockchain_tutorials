@@ -1,0 +1,8 @@
+Unable to resolve imports:
+      "foundry-devops/src/DevOpsTools.sol" in "/mnt/c/Users/user/updraft_blockchain/foundry-smart-contract-lottery-f23/script/Interactions.s.sol"
+      "@solmate/tokens/ERC20.sol" in "/mnt/c/Users/user/updraft_blockchain/foundry-smart-contract-lottery-f23/test/mocks/LinkToken.sol"
+with remappings:
+      chainlink/=/mnt/c/Users/user/updraft_blockchain/foundry-smart-contract-lottery-f23/lib/chainlink/contracts/
+      forge-std/=/mnt/c/Users/user/updraft_blockchain/foundry-smart-contract-lottery-f23/lib/forge-std/src/
+Compiling 42 files with Solc 0.8.19
+Solc 0.8.19 finished in 103.60ms
