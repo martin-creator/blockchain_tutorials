@@ -1,11 +1,11 @@
-SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
 import "forge-std/Test.sol";
 import "forge-std/console.sol";
-import "./src/RebaseToken.sol";
-import "./src/Vault.sol";
-import "./src/interfaces/IRebaseToken.sol"; 
+import "../src/RebaseToken.sol";
+import "../src/Vault.sol";
+import "../src/interfaces/IRebaseToken.sol"; 
 
 contract RebaseTokenTest is Test {
     RebaseToken private rebaseToken;
